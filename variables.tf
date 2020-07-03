@@ -1,5 +1,5 @@
 variable "release" {
-  description = "Code Server release version to install. See https://github.com/cdr/code-server/releases for options."
+  description = "Code Server version. See https://github.com/cdr/code-server/releases for options."
   type        = string
   default     = ""
 }
