@@ -15,3 +15,11 @@ echo "deb [trusted=yes] https://apt.fury.io/caddy/ /" | tee -a /etc/apt/sources.
 DEBIAN_FRONTEND=noninteractive apt -qqy update
 DEBIAN_FRONTEND=noninteractive apt -qqy -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' install caddy
 
+mv /etc/caddy/Caddyfile /root/Caddyfile-original
+
+cat >/etc/caddy/Caddyfile <<EOL
+${hostname}.${domain}
+reverse_proxy 127.0.0.1:8080
+EOL
+
+systemctl reload caddy
